@@ -2,13 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Core.Entities;
 using Microsoft.Extensions.Logging;
 
-namespace Infrastructure.Data.SeedData
+namespace Infrastructure.Data
 {
     public class StoreContextSeed
     {
@@ -28,6 +27,7 @@ namespace Infrastructure.Data.SeedData
 
                     await context.SaveChangesAsync();
                 }
+
                 if (!context.ProductTypes.Any())
                 {
                     var typesData = File.ReadAllText("../Infrastructure/Data/SeedData/types.json");
@@ -53,7 +53,6 @@ namespace Infrastructure.Data.SeedData
 
                     await context.SaveChangesAsync();
                 }
-
             }
             catch (Exception ex)
             {
